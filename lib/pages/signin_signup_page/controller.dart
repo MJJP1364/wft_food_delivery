@@ -144,12 +144,12 @@ class AuthController1 extends GetxController {
     }
   }
 
-  @override
-  void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.onClose();
-  }
+  // @override
+  // void onClose() {
+  //   emailController.dispose();
+  //   passwordController.dispose();
+  //   super.onClose();
+  // }
 
   // void confrimPasswordSufixIconMethod() {
   //   confrimPasswordSufixIcon.value = !confrimPasswordSufixIcon.value;

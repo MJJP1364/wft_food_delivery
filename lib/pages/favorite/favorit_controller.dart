@@ -41,6 +41,7 @@ class FavoritesController extends GetxController {
 
     final exists = favorites.any((f) => f.productId == product.id);
     if (exists) return;
+    print('Trying to add to favorites. Product ID: ${product.id}');
 
     try {
       await supabase.from('favorites').insert({
@@ -82,6 +83,7 @@ class FavoritesController extends GetxController {
   void toggleFavorite(FoodModel product) {
     if (isFavorite(product.id)) {
       removeFromFavorites(product.id);
+      // print('Toggling favorite for product id: ${product.id}');
     } else {
       addToFavorites(product);
     }

@@ -7,6 +7,7 @@ class FavoritesController extends GetxController {
   RxList<FavoriteModel> favorites = <FavoriteModel>[].obs;
   final supabase = Supabase.instance.client;
 
+  // String? get userId => supabase.auth.currentUser?.id;
   String? get userId => supabase.auth.currentUser?.id;
 
   @override
@@ -16,17 +17,20 @@ class FavoritesController extends GetxController {
   }
 
   Future<void> fetchFavorites() async {
-    if (userId == null) return;
+    final uid = userId;
+    if (uid == null) {
+      Get.snackbar('خطا', 'برای مشاهده علاقه‌مندی‌ها ابتدا وارد حساب شوید.');
+      return;
+    }
 
     try {
       final response = await supabase
           .from('favorites')
           .select()
-          .eq('user_id', userId!);
+          .eq('user_id', uid);
 
       favorites.value =
           response.map((json) => FavoriteModel.fromJson(json)).toList();
-      print("favorites: $favorites");
     } catch (e) {
       Get.snackbar('خطا', 'بارگذاری علاقه‌مندی‌ها با مشکل مواجه شد.');
     }
@@ -46,18 +50,23 @@ class FavoritesController extends GetxController {
 
       await fetchFavorites();
     } catch (e) {
+      print("favorites: $favorites");
       Get.snackbar('خطا', 'افزودن به علاقه‌مندی‌ها با مشکل مواجه شد.');
     }
   }
 
   Future<void> removeFromFavorites(String productId) async {
-    if (userId == null) return;
+    final uid = userId;
+    if (uid == null) {
+      Get.snackbar('خطا', 'لطفاً ابتدا وارد حساب کاربری شوید.');
+      return;
+    }
 
     try {
       await supabase
           .from('favorites')
           .delete()
-          .eq('user_id', userId!)
+          .eq('user_id', uid)
           .eq('product_id', productId);
 
       await fetchFavorites();

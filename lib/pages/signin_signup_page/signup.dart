@@ -9,7 +9,9 @@ import 'controller.dart';
 class Signup extends StatelessWidget {
   Signup({super.key});
 
-  final AuthController1 controller = Get.put(AuthController1());
+  // final AuthController1 controller = Get.put(AuthController1());
+  final AuthController1 controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

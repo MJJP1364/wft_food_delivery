@@ -56,7 +56,7 @@ class ProductsItemsDisplay extends StatelessWidget {
                   child: Image(
                     image: CachedNetworkImageProvider(foodModel.imageCard),
                     fit: BoxFit.fill,
-                    height: 80,
+                    height: 90,
                   ),
                 ),
 
@@ -80,7 +80,7 @@ class ProductsItemsDisplay extends StatelessWidget {
                 //       : const Icon(Icons.broken_image, size: 80),
                 // ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 7),
+                  padding: const EdgeInsets.only(top: 5),
                   child: Text(
                     foodModel.name,
                     style: const TextStyle(
@@ -97,7 +97,7 @@ class ProductsItemsDisplay extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 5),
                   child: RichText(
                     text: TextSpan(
                       children: [

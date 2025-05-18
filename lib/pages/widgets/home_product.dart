@@ -17,7 +17,7 @@ class BuildHomeProduct extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
           child: Container(
-            height: 150,
+            height: 180,
             width: 150,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),

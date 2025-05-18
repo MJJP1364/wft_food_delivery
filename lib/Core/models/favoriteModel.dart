@@ -1,6 +1,6 @@
 class FavoriteModel {
   final String id;
-  final String userId;
+  final String? userId;
   final String productId;
 
   FavoriteModel({
@@ -11,16 +11,13 @@ class FavoriteModel {
 
   factory FavoriteModel.fromJson(Map<String, dynamic> json) {
     return FavoriteModel(
-      id: json['id'],
-      userId: json['user_id'],
-      productId: json['product_id'],
+      id: json['id'] ?? '',
+      userId: json['user_id'] ?? '',
+      productId: json['product_id'] ?? '',
     );
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      'user_id': userId,
-      'product_id': productId,
-    };
+    return {'id': id, 'user_id': userId, 'product_id': productId};
   }
 }

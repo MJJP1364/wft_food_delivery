@@ -7,7 +7,6 @@ class FavoritesController extends GetxController {
   RxList<FavoriteModel> favorites = <FavoriteModel>[].obs;
   final supabase = Supabase.instance.client;
 
-  // String? get userId => supabase.auth.currentUser?.id;
   String? get userId => supabase.auth.currentUser?.id;
 
   @override
@@ -29,30 +28,46 @@ class FavoritesController extends GetxController {
           .select()
           .eq('user_id', uid);
 
-      favorites.value =
-          response.map((json) => FavoriteModel.fromJson(json)).toList();
+      favorites.assignAll(
+        response.map((json) => FavoriteModel.fromJson(json)).toList(),
+      );
     } catch (e) {
       Get.snackbar('خطا', 'بارگذاری علاقه‌مندی‌ها با مشکل مواجه شد.');
     }
   }
 
   Future<void> addToFavorites(FoodModel product) async {
-    if (userId == null) return;
+    if (userId == null || userId!.isEmpty) {
+      Get.snackbar("خطا", "ابتدا وارد حساب کاربری شوید.");
+      return;
+    }
+
+    if (product.id.isEmpty) {
+      Get.snackbar("خطا", "شناسه محصول معتبر نیست.");
+      return;
+    }
 
     final exists = favorites.any((f) => f.productId == product.id);
     if (exists) return;
-    print('Trying to add to favorites. Product ID: ${product.id}');
+
+    final newFav = FavoriteModel(
+      id: '',
+      userId: userId!,
+      productId: product.id,
+    );
+
+    favorites.add(newFav);
 
     try {
       await supabase.from('favorites').insert({
         'user_id': userId,
         'product_id': product.id,
       });
-
-      await fetchFavorites();
+      Get.snackbar('موفقیت', 'افزودن به علاقه‌مندی‌ها موفق بود.');
     } catch (e) {
-      print("favorites: $favorites");
-      Get.snackbar('خطا', 'افزودن به علاقه‌مندی‌ها با مشکل مواجه شد.');
+      favorites.remove(newFav);
+      Get.snackbar("خطا", "افزودن به علاقه‌مندی‌ها ناموفق بود.");
+      print("Add to favorites failed: $e");
     }
   }
 
@@ -70,7 +85,10 @@ class FavoritesController extends GetxController {
           .eq('user_id', uid)
           .eq('product_id', productId);
 
-      await fetchFavorites();
+      // بدون درخواست مجدد، مستقیم از لیست حذف کن
+      favorites.removeWhere((fav) => fav.productId == productId);
+
+      Get.snackbar('موفقیت', 'از لیست علاقه‌مندی‌ها حذف شد.');
     } catch (e) {
       Get.snackbar('خطا', 'حذف از علاقه‌مندی‌ها با مشکل مواجه شد.');
     }
@@ -83,7 +101,6 @@ class FavoritesController extends GetxController {
   void toggleFavorite(FoodModel product) {
     if (isFavorite(product.id)) {
       removeFromFavorites(product.id);
-      // print('Toggling favorite for product id: ${product.id}');
     } else {
       addToFavorites(product);
     }

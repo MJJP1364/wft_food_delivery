@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -57,11 +58,19 @@ class FoodDetailScreen extends StatelessWidget {
                   const SizedBox(height: 90),
                   Center(
                     child: Hero(
-                      tag: product.imageCard,
+                      tag: product.id,
                       child:
                           product.imageCard.isNotEmpty
-                              ? Image.network(
-                                product.imageDetail,
+                              ?
+                              // ? Image.network(
+                              //   product.imageDetail,
+                              //   fit: BoxFit.fill,
+                              //   height: 200,
+                              // )
+                              Image(
+                                image: CachedNetworkImageProvider(
+                                  product.imageCard,
+                                ),
                                 fit: BoxFit.fill,
                                 height: 200,
                               )
@@ -87,9 +96,9 @@ class FoodDetailScreen extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                controller.quantity.value > 1
-                                    ? 1
-                                    : controller.quantity.value--;
+                                if (controller.quantity.value > 1) {
+                                  controller.quantity.value--;
+                                }
                               },
                               child: const Icon(
                                 Icons.remove,

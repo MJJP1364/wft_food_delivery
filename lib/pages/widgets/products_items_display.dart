@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wft_food_delivery_code/Core/models/product_model.dart';
@@ -51,13 +52,20 @@ class ProductsItemsDisplay extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Hero(
-                  tag: foodModel.imageCard,
-                  child: Image.network(
-                    foodModel.imageCard,
-                    fit: BoxFit.cover,
+                  tag: foodModel.id,
+                  child: Image(
+                    image: CachedNetworkImageProvider(foodModel.imageCard),
+                    fit: BoxFit.fill,
                     height: 80,
                   ),
                 ),
+
+                //   Image.network(
+                //     foodModel.imageCard,
+                //     fit: BoxFit.cover,
+                //     height: 80,
+
+                // ),
 
                 // Hero(
                 //   tag: foodModel.imageCard,

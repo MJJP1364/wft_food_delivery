@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:wft_food_delivery_code/pages/home_page/home_controller.dart';
 import 'package:get/get.dart';
@@ -47,11 +48,18 @@ class BuildHomeCategory extends StatelessWidget {
                         CircleAvatar(
                           radius: 15,
                           backgroundColor: Colors.transparent,
-                          child: Image.network(
-                            category.image,
-                            scale: 2.0,
+                          child: Image(
+                            image: CachedNetworkImageProvider(category.image),
                             fit: BoxFit.cover,
+                            width: 30,
+                            height: 30,
                           ),
+
+                          // Image.network(
+                          //   category.image,
+                          //   scale: 2.0,
+                          //   fit: BoxFit.cover,
+                          // ),
                         ),
                         const SizedBox(width: 5),
                         Text(

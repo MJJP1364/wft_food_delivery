@@ -35,7 +35,7 @@ void main() async {
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
   );
-//-------------------------------------
+  //-------------------------------------
 
   // runApp(
   //   DevicePreview(

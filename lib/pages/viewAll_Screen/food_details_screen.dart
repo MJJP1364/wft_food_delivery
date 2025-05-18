@@ -61,13 +61,7 @@ class FoodDetailScreen extends StatelessWidget {
                       tag: product.id,
                       child:
                           product.imageCard.isNotEmpty
-                              ?
-                              // ? Image.network(
-                              //   product.imageDetail,
-                              //   fit: BoxFit.fill,
-                              //   height: 200,
-                              // )
-                              Image(
+                              ? Image(
                                 image: CachedNetworkImageProvider(
                                   product.imageCard,
                                 ),

@@ -52,4 +52,19 @@ class FoodModel {
       'id': id,
     };
   }
+
+  factory FoodModel.empty() {
+    return FoodModel(
+      id: '',
+      name: 'ناشناس',
+      imageCard: '',
+      imageDetail: '',
+      price: 0.0,
+      rate: 0.0,
+      specialItems: '',
+      category: '',
+      kcal: 0,
+      time: '',
+    );
+  }
 }

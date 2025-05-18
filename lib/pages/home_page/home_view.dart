@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:wft_food_delivery_code/Core/Utils/consts.dart';
 import 'package:wft_food_delivery_code/pages/home_page/home_controller.dart';
-
 import 'package:get/get.dart';
 import 'package:wft_food_delivery_code/pages/widgets/app_banner.dart';
 import 'package:wft_food_delivery_code/pages/widgets/category_builder.dart';
 import 'package:wft_food_delivery_code/pages/widgets/home_product.dart';
 import 'package:wft_food_delivery_code/pages/widgets/view_all.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
@@ -72,29 +72,43 @@ class HomePage extends GetView<HomeController> {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppBanner(),
-                SizedBox(height: 20),
-                Text(
-                  'Categories',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      body: AnimationLimiter(
+        child: Column(
+          children: AnimationConfiguration.toStaggeredList(
+            duration: const Duration(milliseconds: 1500),
+            childAnimationBuilder:
+                // (widget) => SlideAnimation(
+                (widget) => SlideAnimation(
+                  horizontalOffset: 50.0,
+                  child: FadeInAnimation(child: widget),
                 ),
-              ],
-            ),
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppBanner(),
+                    SizedBox(height: 20),
+                    Text(
+                      'Categories',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 40, child: BuildHomeCategory()),
+              const SizedBox(height: 20),
+              const ViewAll(),
+              const SizedBox(height: 10),
+              BuildHomeProduct(),
+              const SizedBox(height: 20),
+            ],
           ),
-          SizedBox(height: 40, child: BuildHomeCategory()),
-          const SizedBox(height: 20),
-          const ViewAll(),
-          const SizedBox(height: 10),
-          BuildHomeProduct(),
-          const SizedBox(height: 20),
-        ],
+        ),
       ),
     );
   }

@@ -27,9 +27,9 @@ class AuthController1 extends GetxController {
         'SignUp',
         'Please enter email and password',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-        margin: const EdgeInsets.all(15),
+        // backgroundColor: Colors.red,
+        // colorText: Colors.white,
+        // margin: const EdgeInsets.all(15),
       );
       signUpLoading.value = false;
       return;
@@ -44,9 +44,9 @@ class AuthController1 extends GetxController {
           'SignUp',
           'Success to SignUp',
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green,
-          colorText: Colors.black,
-          margin: const EdgeInsets.all(15),
+          // backgroundColor: Colors.green,
+          // colorText: Colors.black,
+          // margin: const EdgeInsets.all(15),
         );
         signUpLoading.value = false;
       });
@@ -55,9 +55,9 @@ class AuthController1 extends GetxController {
         'SignUp',
         'Failed to SignUp',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-        margin: const EdgeInsets.all(15),
+        // backgroundColor: Colors.red,
+        // colorText: Colors.white,
+        // margin: const EdgeInsets.all(15),
       );
       signUpLoading.value = false;
     } finally {
@@ -72,9 +72,9 @@ class AuthController1 extends GetxController {
         'SignIn',
         'Please enter email and password',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-        margin: const EdgeInsets.all(15),
+        // backgroundColor: Colors.red,
+        // colorText: Colors.white,
+        // margin: const EdgeInsets.all(15),
       );
       signUpLoading.value = false;
       return;
@@ -91,9 +91,9 @@ class AuthController1 extends GetxController {
               'SignIn',
               'Success to SignIn',
               snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.green,
-              colorText: Colors.black,
-              margin: const EdgeInsets.all(15),
+              // backgroundColor: Colors.green,
+              // colorText: Colors.black,
+              // margin: const EdgeInsets.all(15),
             );
             signUpLoading.value = false;
           });
@@ -102,9 +102,9 @@ class AuthController1 extends GetxController {
         'SignIn',
         'Failed to SignIn',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-        margin: const EdgeInsets.all(15),
+        // backgroundColor: Colors.red,
+        // colorText: Colors.white,
+        // margin: const EdgeInsets.all(15),
       );
       signUpLoading.value = false;
     } finally {
@@ -127,9 +127,9 @@ class AuthController1 extends GetxController {
           'SignOut',
           'Success to SignOut',
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green,
-          colorText: Colors.black,
-          margin: const EdgeInsets.all(15),
+          // backgroundColor: Colors.green,
+          // colorText: Colors.black,
+          // margin: const EdgeInsets.all(15),
         );
       });
     } catch (e) {
@@ -137,9 +137,9 @@ class AuthController1 extends GetxController {
         'SignOut',
         'Failed to SignOut',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-        margin: const EdgeInsets.all(15),
+        // backgroundColor: Colors.red,
+        // colorText: Colors.white,
+        // margin: const EdgeInsets.all(15),
       );
     }
   }

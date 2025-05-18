@@ -100,9 +100,11 @@ class FavoritesController extends GetxController {
 
   void toggleFavorite(FoodModel product) {
     if (isFavorite(product.id)) {
+      print("Product removed from favorites: ${product.name}");
       removeFromFavorites(product.id);
     } else {
       addToFavorites(product);
+      print("Product added to favorites: ${product.name}");
     }
   }
 }

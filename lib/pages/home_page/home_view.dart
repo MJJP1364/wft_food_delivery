@@ -75,7 +75,7 @@ class HomePage extends GetView<HomeController> {
       body: AnimationLimiter(
         child: Column(
           children: AnimationConfiguration.toStaggeredList(
-            duration: const Duration(milliseconds: 1500),
+            duration: const Duration(milliseconds: 1000),
             childAnimationBuilder:
                 // (widget) => SlideAnimation(
                 (widget) => SlideAnimation(

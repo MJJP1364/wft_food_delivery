@@ -9,10 +9,5 @@ class AppMainController extends GetxController {
   // final bottomNavCurrentIndex = RxInt(0);
   RxInt bottomNavCurrentIndex = 0.obs;
   final List<Widget> pages =
-      [
-        const HomePage(),
-        FavoritePage(),
-        ProfilePage(),
-        const ShoppingPage(),
-      ].obs;
+      [const HomePage(), FavoritePage(), ProfilePage(), ShoppingPage()].obs;
 }

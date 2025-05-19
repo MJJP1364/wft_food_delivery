@@ -7,6 +7,7 @@ import 'package:readmore/readmore.dart';
 import 'package:wft_food_delivery_code/Core/Utils/consts.dart';
 import 'package:wft_food_delivery_code/Core/models/product_model.dart';
 import 'package:wft_food_delivery_code/pages/favorite/favorit_controller.dart';
+import 'package:wft_food_delivery_code/pages/shopping_page/shopping_controller.dart';
 import 'package:wft_food_delivery_code/pages/viewAll_Screen/view_all_screen_controller.dart';
 import 'package:wft_food_delivery_code/pages/widgets/detailPage_appbar.dart';
 import 'package:wft_food_delivery_code/pages/widgets/foodInfo.dart';
@@ -17,6 +18,7 @@ class FoodDetailScreen extends StatelessWidget {
   final FoodModel product;
   final ViewAllScreenController controller = Get.find();
   final FavoritesController favoriteController = Get.find();
+  final ShoppingController shoppingController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +92,8 @@ class FoodDetailScreen extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                if (controller.quantity.value > 1) {
-                                  controller.quantity.value--;
+                                if (shoppingController.quantity.value > 1) {
+                                  shoppingController.quantity.value--;
                                 }
                               },
                               child: const Icon(
@@ -102,7 +104,7 @@ class FoodDetailScreen extends StatelessWidget {
                             const SizedBox(width: 10),
                             Obx(
                               () => Text(
-                                controller.quantity.toString(),
+                                shoppingController.quantity.toString(),
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -113,7 +115,7 @@ class FoodDetailScreen extends StatelessWidget {
                             const SizedBox(width: 10),
                             GestureDetector(
                               onTap: () {
-                                controller.quantity.value++;
+                                shoppingController.quantity.value++;
                               },
                               child: const Icon(Icons.add, color: Colors.white),
                             ),
@@ -242,7 +244,7 @@ class FoodDetailScreen extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            controller.addProductToCart(product);
+            shoppingController.addProductToCart(product);
           },
         ),
       ),

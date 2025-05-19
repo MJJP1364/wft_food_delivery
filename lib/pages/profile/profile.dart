@@ -17,17 +17,14 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: const Text(
-          'Home',
-          style: TextStyle(color: Colors.black),
-        ),
+        title: const Text('Profile', style: TextStyle(color: Colors.black)),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout, color: Colors.black),
             onPressed: () async {
               controller.signOut();
             },
-          )
+          ),
         ],
         leading: const Icon(Icons.abc_outlined, color: Colors.black),
       ),

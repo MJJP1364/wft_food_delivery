@@ -4,10 +4,11 @@ import 'package:wft_food_delivery_code/Core/models/favoriteModel.dart';
 import 'package:wft_food_delivery_code/Core/models/product_model.dart';
 
 class FavoritesController extends GetxController {
-  RxList<FavoriteModel> favorites = <FavoriteModel>[].obs;
   final supabase = Supabase.instance.client;
+  RxList<FavoriteModel> favorites = <FavoriteModel>[].obs;
 
   String? get userId => supabase.auth.currentUser?.id;
+  
 
   @override
   void onInit() {
@@ -100,11 +101,9 @@ class FavoritesController extends GetxController {
 
   void toggleFavorite(FoodModel product) {
     if (isFavorite(product.id)) {
-      print("Product removed from favorites: ${product.name}");
       removeFromFavorites(product.id);
     } else {
       addToFavorites(product);
-      print("Product added to favorites: ${product.name}");
     }
   }
 }

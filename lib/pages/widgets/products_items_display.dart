@@ -60,25 +60,7 @@ class ProductsItemsDisplay extends StatelessWidget {
                   ),
                 ),
 
-                //   Image.network(
-                //     foodModel.imageCard,
-                //     fit: BoxFit.cover,
-                //     height: 80,
-
-                // ),
-
-                // Hero(
-                //   tag: foodModel.imageCard,
-                //   child: foodModel.imageDetail.isNotEmpty
-                //       ? Image.network(
-                //           foodModel.imageCard,
-                //           fit: BoxFit.cover,
-                //           height: 80,
-                //           errorBuilder: (context, error, stackTrace) =>
-                //               const Icon(Icons.error),
-                //         )
-                //       : const Icon(Icons.broken_image, size: 80),
-                // ),
+                
                 Padding(
                   padding: const EdgeInsets.only(top: 5),
                   child: Text(

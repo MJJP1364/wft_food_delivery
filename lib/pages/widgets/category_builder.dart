@@ -55,11 +55,7 @@ class BuildHomeCategory extends StatelessWidget {
                             height: 30,
                           ),
 
-                          // Image.network(
-                          //   category.image,
-                          //   scale: 2.0,
-                          //   fit: BoxFit.cover,
-                          // ),
+                        
                         ),
                         const SizedBox(width: 5),
                         Text(

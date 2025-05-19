@@ -16,23 +16,15 @@ class BuildHomeProduct extends StatelessWidget {
         // ignore: prefer_const_constructors
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
-          child: Container(
-            height: 180,
-            width: 150,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.red,
-              border: Border.all(color: Colors.black, width: 2),
-            ),
-            child: const Align(
-              alignment: Alignment.center,
-              child: Text(
-                'No Category Found',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+          child: const Align(
+            alignment: Alignment.center,
+            child: Text(
+              'No Category Found!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
           ),

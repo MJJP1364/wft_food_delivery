@@ -48,8 +48,11 @@ class FavoritePage extends StatelessWidget {
                   child: FadeInAnimation(
                     child: GestureDetector(
                       onTap:
-                          () =>
-                              Get.to(() => FoodDetailScreen(product: product)),
+                          () => Get.to(
+                            () => FoodDetailScreen(product: product),
+                            transition: Transition.fadeIn,
+                            duration: const Duration(milliseconds: 500),
+                          ),
                       child: Container(
                         margin: const EdgeInsets.symmetric(
                           vertical: 8,

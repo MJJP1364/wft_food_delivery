@@ -244,7 +244,7 @@ class FoodDetailScreen extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            shoppingController.addProductToCart(product);
+            // shoppingController.addProductToCart(product);
           },
         ),
       ),

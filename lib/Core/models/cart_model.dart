@@ -22,4 +22,14 @@ class CartItem {
       quantity: map['quantity'] ?? '',
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'product_id': productId,
+      'product_data': productData,
+      'user_id': userId,
+      'quantity': quantity,
+    };
+  }
 }

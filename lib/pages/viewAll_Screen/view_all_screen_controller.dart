@@ -7,6 +7,7 @@ class ViewAllScreenController extends GetxController {
 
   RxList<FoodModel> products = <FoodModel>[].obs;
   RxBool isLoading = true.obs;
+ 
 
   @override
   void onInit() {
@@ -27,4 +28,6 @@ class ViewAllScreenController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  
 }

@@ -35,6 +35,8 @@ void main() async {
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
   );
+
+  //--------------------------------vvvvvvvvvvv12
  
 
   // runApp(

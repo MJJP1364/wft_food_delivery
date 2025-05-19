@@ -106,8 +106,10 @@ class FavoritePage extends StatelessWidget {
 
                                     // نام محصول
                                     Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      // mainAxisAlignment:
+                                      //     MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           product.name,
@@ -117,6 +119,15 @@ class FavoritePage extends StatelessWidget {
                                             color: Colors.black,
                                           ),
                                         ),
+                                        Text(
+                                          product.category,
+                                          style: const TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+
                                         Row(
                                           children: [
                                             Text(

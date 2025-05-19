@@ -28,7 +28,7 @@ class ShoppingController extends GetxController {
   }
 
   Future<void> fetchCartItems() async {
-    final userId = supabase.auth.currentUser?.id.toString();
+    final userId = supabase.auth.currentUser?.id;
     if (userId == null) {
       Get.snackbar('Error', 'User not logged in');
       return;
@@ -67,7 +67,7 @@ class ShoppingController extends GetxController {
     Map<String, dynamic> productData,
     int selectedQuantity,
   ) async {
-    final userId = supabase.auth.currentUser?.id.toString();
+    final userId = supabase.auth.currentUser?.id;
 
     if (userId == null) {
       Get.snackbar('Error', 'User not logged in');
@@ -101,6 +101,7 @@ class ShoppingController extends GetxController {
           items[index].quantity = newQuantity;
 
           items.refresh();
+          Get.snackbar('Success', 'Product added to cart!');
         }
       } else {
         final response =
@@ -133,7 +134,7 @@ class ShoppingController extends GetxController {
   }
 
   Future<void> removeFromCart(CartItem item) async {
-    final userId = supabase.auth.currentUser?.id.toString();
+    final userId = supabase.auth.currentUser?.id;
 
     if (userId == null) {
       Get.snackbar('Error', 'User not logged in');

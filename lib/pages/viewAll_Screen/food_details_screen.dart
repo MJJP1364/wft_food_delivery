@@ -248,7 +248,6 @@ class FoodDetailScreen extends StatelessWidget {
               product.id,
               product.toMap(), // یا هر Map دیگری که شامل داده‌های محصول هست
               shoppingController.quantity.value,
-            
             );
           },
         ),

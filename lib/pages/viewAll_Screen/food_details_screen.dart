@@ -233,18 +233,23 @@ class FoodDetailScreen extends StatelessWidget {
       floatingActionButton: SizedBox(
         width: 350,
         child: FloatingActionButton.extended(
-          backgroundColor: Consts.red,
-          label: const Text(
-            'Add to Cart',
-            style: TextStyle(
+          backgroundColor: Colors.deepOrange,
+          label: Text(
+            'افزودن به سبد (${shoppingController.quantity.value})',
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: 25,
-              letterSpacing: 1.3,
+              fontSize: 18,
             ),
           ),
           onPressed: () {
-            // shoppingController.addProductToCart(product);
+            // فرض کنید product متغیری از نوع FoodModel هست
+            shoppingController.addProductToCart(
+              product.id,
+              product.toMap(), // یا هر Map دیگری که شامل داده‌های محصول هست
+              shoppingController.quantity.value,
+            
+            );
           },
         ),
       ),

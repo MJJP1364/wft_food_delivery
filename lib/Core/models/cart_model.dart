@@ -15,11 +15,14 @@ class CartItem {
 
   factory CartItem.fromMap(Map<String, dynamic> map) {
     return CartItem(
-      id: map['id'] ?? '',
-      productId: map['product_id'] ?? '',
-      productData: Map<String, dynamic>.from(map['product_data'] ?? {}),
-      userId: map['user_id'] ?? 0,
-      quantity: map['quantity'] ?? '',
+      id: map['id']?.toString() ?? '',
+      productId: map['product_id']?.toString() ?? '',
+      productData:
+          map['product_data'] is Map
+              ? Map<String, dynamic>.from(map['product_data'])
+              : {},
+      userId: map['user_id']?.toString() ?? '',
+      quantity: (map['quantity'] as num?)?.toInt() ?? 0,
     );
   }
 
@@ -31,5 +34,28 @@ class CartItem {
       'user_id': userId,
       'quantity': quantity,
     };
+  }
+
+  // ✨ copyWith برای آپدیت غیرمستقیم (immutable)
+  CartItem copyWith({
+    String? id,
+    String? productId,
+    Map<String, dynamic>? productData,
+    int? quantity,
+    String? userId,
+  }) {
+    return CartItem(
+      id: id ?? this.id,
+      productId: productId ?? this.productId,
+      productData: productData ?? this.productData,
+      quantity: quantity ?? this.quantity,
+
+      userId: userId ?? this.userId,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'CartItem(id: $id, productId: $productId, productData: $productData, quantity: $quantity, userId: $userId)';
   }
 }

@@ -36,14 +36,12 @@ void main() async {
     statusBarIconBrightness: Brightness.dark,
   );
 
-  //--------------------------------vvvvvvvvvvv12
- 
-
   // runApp(
   //   DevicePreview(
   //     enabled: true, // Set to true to enable Device Preview
   //     builder: (context) => const MyApp(),
   //   ),
+  // );
 
   //
   runApp(const MyApp());

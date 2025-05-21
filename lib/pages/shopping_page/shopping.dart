@@ -48,9 +48,10 @@ class ShoppingPage extends StatelessWidget {
 
                     return AnimationConfiguration.staggeredList(
                       position: index,
-                      duration: const Duration(milliseconds: 700),
+                      duration: const Duration(milliseconds: 800),
                       child: SlideAnimation(
-                        verticalOffset: 50.0,
+                        horizontalOffset: 100.0,
+
                         child: FadeInAnimation(
                           child: Padding(
                             padding: const EdgeInsets.only(
@@ -109,7 +110,7 @@ class ShoppingPage extends StatelessWidget {
                                           ),
                                           const SizedBox(height: 5),
                                           Text(
-                                            'قیمت: ${price.toStringAsFixed(2)} تومان',
+                                            'Price: ${price.toStringAsFixed(2)} \$',
                                             style: const TextStyle(
                                               fontSize: 16,
                                               color: Colors.black54,
@@ -117,10 +118,10 @@ class ShoppingPage extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      const Spacer(),
+                                      // const Spacer(),
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                            MainAxisAlignment.spaceEvenly,
                                         children: [
                                           IconButton(
                                             onPressed:
@@ -133,7 +134,7 @@ class ShoppingPage extends StatelessWidget {
                                           Text(
                                             '${item.quantity}',
                                             style: const TextStyle(
-                                              fontSize: 30,
+                                              fontSize: 20,
                                               color: Colors.blue,
                                             ),
                                           ),
@@ -216,9 +217,13 @@ class ShoppingPage extends StatelessWidget {
                     ),
 
                     onPressed: shoppingController.clearCart,
-                    icon: Icon(Icons.delete_forever, size: 35),
+                    icon: Icon(
+                      Icons.delete_forever,
+                      size: 30,
+                      color: Colors.white,
+                    ),
                     label: Text(
-                      "پاک کردن کل سبد",
+                      " Clear Cart",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,

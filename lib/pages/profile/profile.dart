@@ -26,7 +26,6 @@ class ProfilePage extends StatelessWidget {
             },
           ),
         ],
-        leading: const Icon(Icons.abc_outlined, color: Colors.black),
       ),
     );
   }

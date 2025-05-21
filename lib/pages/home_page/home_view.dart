@@ -72,41 +72,43 @@ class HomePage extends GetView<HomeController> {
           ),
         ],
       ),
-      body: AnimationLimiter(
-        child: Column(
-          children: AnimationConfiguration.toStaggeredList(
-            duration: const Duration(milliseconds: 1000),
-            childAnimationBuilder:
-                // (widget) => SlideAnimation(
-                (widget) => SlideAnimation(
-                  horizontalOffset: 50.0,
-                  child: FadeInAnimation(child: widget),
-                ),
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AppBanner(),
-                    SizedBox(height: 20),
-                    Text(
-                      'Categories',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: AnimationLimiter(
+          child: Column(
+            children: AnimationConfiguration.toStaggeredList(
+              duration: const Duration(milliseconds: 1000),
+              childAnimationBuilder:
+                  // (widget) => SlideAnimation(
+                  (widget) => SlideAnimation(
+                    horizontalOffset: 50.0,
+                    child: FadeInAnimation(child: widget),
+                  ),
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppBanner(),
+                      SizedBox(height: 20),
+                      Text(
+                        'Categories',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 40, child: BuildHomeCategory()),
-              const SizedBox(height: 20),
-              const ViewAll(),
-              const SizedBox(height: 10),
-              BuildHomeProduct(),
-              const SizedBox(height: 20),
-            ],
+                SizedBox(height: 40, child: BuildHomeCategory()),
+                const SizedBox(height: 20),
+                const ViewAll(),
+                const SizedBox(height: 10),
+                BuildHomeProduct(),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),

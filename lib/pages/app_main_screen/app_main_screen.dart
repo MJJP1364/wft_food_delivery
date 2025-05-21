@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:wft_food_delivery_code/pages/app_main_screen/app_main_conroller.dart';
+import 'package:wft_food_delivery_code/pages/shopping_page/shopping_controller.dart';
 import 'package:wft_food_delivery_code/pages/widgets/buildNavItem.dart';
 
 import '../../Core/Utils/consts.dart';
@@ -12,6 +13,7 @@ class AppMainScreen extends StatelessWidget {
   AppMainScreen({super.key});
 
   final controller = Get.put(AppMainController());
+  final ShoppingController shoppingController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -24,41 +26,27 @@ class AppMainScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            BuildNavItem(
-              icon: Iconsax.home_15,
-              lable: 'A',
-              index: 0,
-            ),
+            BuildNavItem(icon: Iconsax.home_15, lable: 'A', index: 0),
             const SizedBox(width: 10),
-            BuildNavItem(
-              icon: Iconsax.heart_add,
-              lable: 'B',
-              index: 1,
-            ),
+            BuildNavItem(icon: Iconsax.heart_add, lable: 'B', index: 1),
             const SizedBox(width: 90),
-            BuildNavItem(
-              icon: Icons.person_outline,
-              lable: 'C',
-              index: 2,
-            ),
+            BuildNavItem(icon: Icons.person_outline, lable: 'C', index: 2),
             const SizedBox(width: 10),
             Stack(
               clipBehavior: Clip.none,
               children: [
-                BuildNavItem(
-                  icon: Iconsax.shopping_cart,
-                  lable: 'D',
-                  index: 3,
-                ),
-                const Positioned(
+                BuildNavItem(icon: Iconsax.shopping_cart, lable: 'D', index: 3),
+                Positioned(
                   right: -7,
                   top: 16,
                   child: CircleAvatar(
                     radius: 12,
                     backgroundColor: Consts.red,
-                    child: Text(
-                      '0',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    child: Obx(
+                      () => Text(
+                        '${shoppingController.items.length}',
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
                     ),
                   ),
                 ),
@@ -77,9 +65,9 @@ class AppMainScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

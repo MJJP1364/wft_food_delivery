@@ -71,102 +71,117 @@ class FavoritePage extends StatelessWidget {
                                   ),
                               child: Container(
                                 margin: const EdgeInsets.symmetric(
-                                  vertical: 8,
+                                  vertical: 3,
                                   horizontal: 16,
                                 ),
                                 padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                  color: Colors.red[50],
                                   borderRadius: BorderRadius.circular(15),
                                 ),
-                                child: Row(
-                                  children: [
-                                    // تصویر محصول
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(12),
-                                      child: Hero(
-                                        tag: product.id,
-                                        transitionOnUserGestures: true,
-                                        child: CachedNetworkImage(
-                                          imageUrl: product.imageCard,
-                                          width: 80,
-                                          height: 80,
-                                          fit: BoxFit.fill,
-                                          placeholder:
-                                              (context, url) =>
-                                                  const CircularProgressIndicator(),
-                                          errorWidget:
-                                              (context, url, error) =>
-                                                  const Icon(Icons.error),
-                                        ),
-                                      ),
-                                    ),
-
-                                    const SizedBox(width: 20),
-
-                                    // نام محصول
-                                    Column(
-                                      // mainAxisAlignment:
-                                      //     MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Material(
+                                    color: Colors.white30,
+                                    elevation: 25,
+                                    child: Row(
                                       children: [
-                                        Text(
-                                          product.name,
-                                          style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        Text(
-                                          product.category,
-                                          style: const TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
+                                        // تصویر محصول
+                                        Hero(
+                                          tag: product.id,
+                                          transitionOnUserGestures: true,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                              left: 8.0,
+                                            ),
+                                            child: CachedNetworkImage(
+                                              imageUrl: product.imageCard,
+                                              width: 80,
+                                              height: 80,
+                                              fit: BoxFit.contain,
+                                              placeholder:
+                                                  (context, url) =>
+                                                      const CircularProgressIndicator(),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
+                                            ),
                                           ),
                                         ),
 
-                                        Row(
+                                        const SizedBox(width: 20),
+
+                                        // نام محصول
+                                        Column(
+                                          // mainAxisAlignment:
+                                          //     MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              '\$',
-                                              style: const TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.red,
-                                              ),
-                                            ),
-                                            const SizedBox(width: 5),
-                                            Text(
-                                              product.price.toString(),
+                                              product.name,
                                               style: const TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black,
                                               ),
                                             ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  product.category,
+                                                  style: const TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                                const SizedBox(width: 10),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      product.price.toString(),
+                                                      style: const TextStyle(
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(width: 5),
+                                                    Text(
+                                                      '\$',
+                                                      style: const TextStyle(
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.red,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ],
+                                        ),
+                                        const Spacer(),
+
+                                        // دکمه حذف
+                                        IconButton(
+                                          onPressed: () {
+                                            favoriteController
+                                                .removeFromFavorites(
+                                                  favorite.productId,
+                                                );
+                                          },
+                                          icon: Icon(
+                                            Icons.delete_forever,
+                                            size: 40,
+                                            color: Colors.red[700],
+                                          ),
                                         ),
                                       ],
                                     ),
-                                    const Spacer(),
-
-                                    // دکمه حذف
-                                    IconButton(
-                                      onPressed: () {
-                                        favoriteController.removeFromFavorites(
-                                          favorite.productId,
-                                        );
-                                      },
-                                      icon: Icon(
-                                        Icons.delete_forever,
-                                        size: 40,
-                                        color: Colors.red[700],
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:wft_food_delivery_code/pages/shopping_page/shopping_controller.dart';
 
@@ -14,7 +15,7 @@ class ShoppingPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
-          'سبد خرید',
+          'Shopping Cart',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -35,116 +36,198 @@ class ShoppingPage extends StatelessWidget {
         // Main Content
         return Column(
           children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: shoppingController.items.length,
-                itemBuilder: (context, index) {
-                  final item = shoppingController.items[index];
-                  final product = item.productData;
-                  final name = product['name'] ?? 'ناشناس';
-                  final price = product['price']?.toDouble() ?? 0.0;
+            AnimationLimiter(
+              child: Expanded(
+                child: ListView.builder(
+                  itemCount: shoppingController.items.length,
+                  itemBuilder: (context, index) {
+                    final item = shoppingController.items[index];
+                    final product = item.productData;
+                    final name = product['name'] ?? 'ناشناس';
+                    final price = product['price']?.toDouble() ?? 0.0;
 
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Material(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(5.0),
-                        leading: CachedNetworkImage(
-                          imageUrl: product['imageCard'] ?? '',
-                          placeholder:
-                              (context, url) =>
-                                  const CircularProgressIndicator(),
-                          errorWidget:
-                              (context, url, error) => const Icon(Icons.error),
-                          width: 60,
-                          height: 60,
-                          fit: BoxFit.fill,
-                        ),
-                        title: Text(
-                          maxLines: 1,
-                          name,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black,
-                          ),
-                        ),
-                        subtitle: Text(
-                          'قیمت: ${price.toStringAsFixed(0)} تومان',
-                        ),
-                        trailing: SizedBox(
-                          width: 170,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                onPressed:
-                                    () => shoppingController.decreaseQuantity(
-                                      item,
-                                    ),
-                                icon: const Icon(Icons.remove_circle),
-                              ),
-                              Text(
-                                '${item.quantity}',
-                                style: const TextStyle(
-                                  fontSize: 30,
-                                  color: Colors.blue,
+                    return AnimationConfiguration.staggeredList(
+                      position: index,
+                      duration: const Duration(milliseconds: 700),
+                      child: SlideAnimation(
+                        verticalOffset: 50.0,
+                        child: FadeInAnimation(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8.0,
+                              left: 8.0,
+                              right: 8.0,
+                            ),
+                            child: SizedBox(
+                              height: 100,
+                              width: double.infinity,
+                              child: Card(
+                                elevation: 10,
+                                // color: Colors.white54,
+                                shadowColor: Colors.black,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.white30,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const SizedBox(width: 5),
+                                      CachedNetworkImage(
+                                        imageUrl: product['imageCard'] ?? '',
+                                        placeholder:
+                                            (context, url) =>
+                                                const CircularProgressIndicator(),
+                                        errorWidget:
+                                            (context, url, error) =>
+                                                const Icon(Icons.error),
+                                        width: 60,
+                                        height: 60,
+                                        fit: BoxFit.fill,
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            maxLines: 1,
+                                            name,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 5),
+                                          Text(
+                                            'قیمت: ${price.toStringAsFixed(2)} تومان',
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.black54,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          IconButton(
+                                            onPressed:
+                                                () => shoppingController
+                                                    .decreaseQuantity(item),
+                                            icon: const Icon(
+                                              Icons.remove_circle,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${item.quantity}',
+                                            style: const TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.blue,
+                                            ),
+                                          ),
+                                          IconButton(
+                                            onPressed:
+                                                () => shoppingController
+                                                    .increaseQuantity(item),
+                                            icon: const Icon(Icons.add_circle),
+                                          ),
+                                          IconButton(
+                                            onPressed:
+                                                () => shoppingController
+                                                    .removeFromCart(item),
+                                            icon: const Icon(Icons.delete),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                              IconButton(
-                                onPressed:
-                                    () => shoppingController.increaseQuantity(
-                                      item,
-                                    ),
-                                icon: const Icon(Icons.add_circle),
-                              ),
-                              IconButton(
-                                onPressed:
-                                    () =>
-                                        shoppingController.removeFromCart(item),
-                                icon: const Icon(Icons.delete),
-                              ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
-            ElevatedButton.icon(
-              onPressed: shoppingController.clearCart,
-              icon: Icon(Icons.delete_forever),
-              label: Text("پاک کردن کل سبد"),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'جمع کل: ',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+
+                    children: [
+                      const Text(
+                        'Total: ',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        shoppingController.totalPrice.toStringAsFixed(0),
+                        style: const TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                        ),
+                      ),
+                      const Text(
+                        ' \$',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    shoppingController.totalPrice.toStringAsFixed(0),
-                    style: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
+                ),
+                const Spacer(),
+
+                Padding(
+                  padding: const EdgeInsets.only(right: 15.0),
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 10,
+                      backgroundColor: Colors.red,
+
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+
+                    onPressed: shoppingController.clearCart,
+                    icon: Icon(Icons.delete_forever, size: 35),
+                    label: Text(
+                      "پاک کردن کل سبد",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  const Text(
-                    ' تومان',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
           ],

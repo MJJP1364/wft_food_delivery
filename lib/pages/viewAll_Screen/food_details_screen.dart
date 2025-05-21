@@ -234,12 +234,14 @@ class FoodDetailScreen extends StatelessWidget {
         width: 350,
         child: FloatingActionButton.extended(
           backgroundColor: Colors.deepOrange,
-          label: Text(
-            'افزودن به سبد (${shoppingController.quantity.value})',
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
+          label: Obx(
+            () => Text(
+              'افزودن به سبد (${shoppingController.quantity.value})',
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
             ),
           ),
           onPressed: () {

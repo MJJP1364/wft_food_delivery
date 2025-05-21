@@ -18,9 +18,8 @@ class AppbarParts extends StatelessWidget implements PreferredSizeWidget {
         const SizedBox(width: 27),
         GestureDetector(
           onTap: () {
-            shoppingController.quantity.value = 1;
-
             Get.back();
+            shoppingController.quantity.value = 1;
           },
           child: Container(
             height: 40,

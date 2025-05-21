@@ -16,6 +16,8 @@ class ShoppingController extends GetxController {
   RxBool isLoading = true.obs;
   RxInt quantity = 1.obs;
 
+  
+
   // to calculate the total price of the cart
   double get totalPrice {
     double total = 0.0;
@@ -201,6 +203,19 @@ class ShoppingController extends GetxController {
       Get.snackbar('خطا', 'خطا در کاهش تعداد: $e');
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<void> clearCart() async {
+    final userId = supabase.auth.currentUser?.id;
+    if (userId == null) return;
+
+    try {
+      await supabase.from('cart').delete().eq('user_id', userId);
+      items.clear();
+      Get.snackbar("موفق", "سبد خرید شما خالی شد.");
+    } catch (e) {
+      Get.snackbar("خطا", "مشکلی در پاک کردن سبد به وجود آمد.");
     }
   }
 }

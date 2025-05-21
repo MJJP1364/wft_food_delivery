@@ -3,6 +3,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wft_food_delivery_code/Core/models/product_model.dart';
 
 class ViewAllScreenController extends GetxController {
+
+
+
   final supabase = Supabase.instance.client;
 
   RxList<FoodModel> products = <FoodModel>[].obs;
@@ -14,6 +17,7 @@ class ViewAllScreenController extends GetxController {
     super.onInit();
     fetchFoodProduct();
   }
+  
 
   Future<void> fetchFoodProduct() async {
     try {

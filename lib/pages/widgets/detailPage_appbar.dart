@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wft_food_delivery_code/pages/shopping_page/shopping_controller.dart';
 
 class AppbarParts extends StatelessWidget implements PreferredSizeWidget {
-  const AppbarParts(
-    BuildContext context, {
-    super.key,
-  });
+  AppbarParts(BuildContext context, {super.key});
+
+  final ShoppingController shoppingController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,11 @@ class AppbarParts extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         const SizedBox(width: 27),
         GestureDetector(
-          onTap: () => Get.back(),
+          onTap: () {
+            shoppingController.quantity.value = 1;
+
+            Get.back();
+          },
           child: Container(
             height: 40,
             width: 40,
@@ -51,7 +55,7 @@ class AppbarParts extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ),
-        const SizedBox(width: 27)
+        const SizedBox(width: 27),
       ],
     );
   }

@@ -16,8 +16,6 @@ class ShoppingController extends GetxController {
   RxBool isLoading = true.obs;
   RxInt quantity = 1.obs;
 
-  
-
   // to calculate the total price of the cart
   double get totalPrice {
     double total = 0.0;
@@ -69,8 +67,7 @@ class ShoppingController extends GetxController {
     Map<String, dynamic> productData,
     int selectedQuantity,
   ) async {
-    final userId = supabase.auth.currentUser?.id;
-
+    final userId = supabase.auth.currentUser?.id.toString();
     if (userId == null) {
       Get.snackbar('Error', 'User not logged in');
       return;
@@ -101,9 +98,7 @@ class ShoppingController extends GetxController {
 
         if (index != -1) {
           items[index].quantity = newQuantity;
-
-          items.refresh();
-          Get.snackbar('Success', 'Product added to cart!');
+          Get.snackbar('موفق', 'تعداد محصول به روز شد.');
         }
       } else {
         final response =
@@ -117,17 +112,19 @@ class ShoppingController extends GetxController {
         if (response.isNotEmpty) {
           items.add(
             CartItem(
-              id: response.first['id'],
+              id: response.first['id'].toString(),
               productId: productId,
               productData: productData,
-              userId: userId,
+              userId:
+                  response.first['user_id'].toString(), // Ensure this is int
               quantity: selectedQuantity,
             ),
           );
+          Get.snackbar('موفق', 'محصول به سبد خرید اضافه شد.');
         }
       }
     } catch (e) {
-      Get.snackbar('Error', 'Failed to add product to cart: $e');
+      Get.snackbar('خطا', 'افزودن محصول به سبد خرید ناموفق بود: $e');
       print("Error adding product to cart: $e");
     } finally {
       fetchCartItems();

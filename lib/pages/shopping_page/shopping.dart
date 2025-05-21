@@ -45,54 +45,71 @@ class ShoppingPage extends StatelessWidget {
                   final price = product['price']?.toDouble() ?? 0.0;
 
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
-                      leading: CachedNetworkImage(
-                        imageUrl: product['imageCard'] ?? '',
-                        placeholder:
-                            (context, url) => const CircularProgressIndicator(),
-                        errorWidget:
-                            (context, url, error) => const Icon(Icons.error),
-                        width: 60,
-                        height: 60,
-                        fit: BoxFit.fill,
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Material(
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      title: Text(
-                        name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.black,
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.all(5.0),
+                        leading: CachedNetworkImage(
+                          imageUrl: product['imageCard'] ?? '',
+                          placeholder:
+                              (context, url) =>
+                                  const CircularProgressIndicator(),
+                          errorWidget:
+                              (context, url, error) => const Icon(Icons.error),
+                          width: 60,
+                          height: 60,
+                          fit: BoxFit.fill,
                         ),
-                      ),
-                      subtitle: Text('قیمت: ${price.toStringAsFixed(0)} تومان'),
-                      trailing: SizedBox(
-                        width: 170,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              onPressed:
-                                  () =>
-                                      shoppingController.decreaseQuantity(item),
-                              icon: const Icon(Icons.remove_circle),
-                            ),
-                            Text(
-                              '${item.quantity}',
-                              style: const TextStyle(fontSize: 20),
-                            ),
-                            IconButton(
-                              onPressed:
-                                  () =>
-                                      shoppingController.increaseQuantity(item),
-                              icon: const Icon(Icons.add_circle),
-                            ),
-                            IconButton(
-                              onPressed:
-                                  () => shoppingController.removeFromCart(item),
-                              icon: const Icon(Icons.delete),
-                            ),
-                          ],
+                        title: Text(
+                          maxLines: 1,
+                          name,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black,
+                          ),
+                        ),
+                        subtitle: Text(
+                          'قیمت: ${price.toStringAsFixed(0)} تومان',
+                        ),
+                        trailing: SizedBox(
+                          width: 170,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                onPressed:
+                                    () => shoppingController.decreaseQuantity(
+                                      item,
+                                    ),
+                                icon: const Icon(Icons.remove_circle),
+                              ),
+                              Text(
+                                '${item.quantity}',
+                                style: const TextStyle(
+                                  fontSize: 30,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed:
+                                    () => shoppingController.increaseQuantity(
+                                      item,
+                                    ),
+                                icon: const Icon(Icons.add_circle),
+                              ),
+                              IconButton(
+                                onPressed:
+                                    () =>
+                                        shoppingController.removeFromCart(item),
+                                icon: const Icon(Icons.delete),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

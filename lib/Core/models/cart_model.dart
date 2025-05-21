@@ -21,7 +21,9 @@ class CartItem {
           map['product_data'] is Map
               ? Map<String, dynamic>.from(map['product_data'])
               : {},
-      userId: map['user_id']?.toString() ?? '',
+      // Ensure userId is a string
+      userId: (map['user_id'] ?? '').toString(),
+      // Convert to int if it's a number, otherwise default to 0
       quantity: (map['quantity'] as num?)?.toInt() ?? 0,
     );
   }
@@ -49,13 +51,12 @@ class CartItem {
       productId: productId ?? this.productId,
       productData: productData ?? this.productData,
       quantity: quantity ?? this.quantity,
-
       userId: userId ?? this.userId,
     );
   }
 
   @override
   String toString() {
-    return 'CartItem(id: $id, productId: $productId, productData: $productData, quantity: $quantity, userId: $userId)';
+    return 'CartItem(id: $id, productId: $productId, productData: $productData, quantity: $quantity, userId: $userId,)';
   }
 }

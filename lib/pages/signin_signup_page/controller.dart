@@ -185,6 +185,7 @@ class AuthController1 extends GetxController {
         'ثبت نام',
         'لطفاً ایمیل و رمز عبور را وارد کنید.',
         snackPosition: SnackPosition.BOTTOM,
+        padding: const EdgeInsets.all(15),
       );
       signUpLoading.value = false;
       return;
@@ -205,6 +206,7 @@ class AuthController1 extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
+          padding: const EdgeInsets.all(15),
         );
         Get.offAll(() => SignIn());
       } else {
@@ -217,6 +219,7 @@ class AuthController1 extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,
+        padding: const EdgeInsets.all(15),
       );
     } finally {
       signUpLoading.value = false;
@@ -230,6 +233,7 @@ class AuthController1 extends GetxController {
         'ورود',
         'لطفاً ایمیل و رمز عبور را وارد کنید.',
         snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.all(15),
       );
       return;
     }
@@ -249,6 +253,8 @@ class AuthController1 extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
+
+          margin: const EdgeInsets.all(15),
         );
         Get.offAll(() => const HomePage());
       } else {
@@ -261,6 +267,7 @@ class AuthController1 extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,
+        margin: const EdgeInsets.all(15),
       );
     } finally {
       signInLoading.value = false;
@@ -280,6 +287,7 @@ class AuthController1 extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.green,
         colorText: Colors.white,
+        margin: const EdgeInsets.all(15),
       );
       Get.off(() => SignIn());
     } catch (e) {
